@@ -1,0 +1,21 @@
+name: test
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner-label:
+        required: true
+        type: string
+      sleep-duration:
+        required: true 
+        type: number
+        default: 10
+
+jobs:
+  test:
+    runs-on:
+      - self-hosted
+      - ${{ inputs.runner-label }}
+    steps:
+      - run: |
+          sleep ${{ inputs.sleep-duration }}
