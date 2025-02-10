@@ -10,6 +10,9 @@ on:
         required: true 
         type: number
         default: 10
+      run-command:
+        required: false
+        type: string
 
 jobs:
   test:
@@ -19,3 +22,5 @@ jobs:
     steps:
       - run: |
           sleep ${{ inputs.sleep-duration }}
+      - if: inputs.run-command != ''
+        run: ${{ inputs.run-command }}
